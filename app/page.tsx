@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Header } from "./_components/header";
 import { Button } from "./_components/ui/button";
 import { db } from "./_lib/prisma";
@@ -6,6 +7,7 @@ import { BarbershopItem } from "./_components/barbershop-item";
 import { quickSearchOptions } from "./_constants/quickSearch";
 import { BookingItem } from "./_components/booking-item";
 import Search from "./_components/search";
+import { Sheet, SheetClose } from "./_components/ui/sheet";
 
 export default async function Home() {
   const barbsershops = await db.barbershop.findMany({});
@@ -28,19 +30,21 @@ export default async function Home() {
 
         <div className="mt-6 flex items-center gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {quickSearchOptions.map((option) => (
-            <Button
-              key={option.title}
-              className="gap-2 px-6"
-              variant="secondary"
-            >
-              <Image
-                src={option.imageUrl}
-                width={16}
-                height={16}
-                alt={option.title}
-              />
-              <span>{option.title}</span>
-            </Button>
+            <Sheet key={option.title}>
+              <SheetClose asChild>
+                <Button className="gap-2 px-6" asChild variant="secondary">
+                  <Link href={`/barbershops?service=${option.title}`}>
+                    <Image
+                      src={option.imageUrl}
+                      width={16}
+                      height={16}
+                      alt={option.title}
+                    />
+                    <span>{option.title}</span>
+                  </Link>
+                </Button>
+              </SheetClose>
+            </Sheet>
           ))}
         </div>
 
