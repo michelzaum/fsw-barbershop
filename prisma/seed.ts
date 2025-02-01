@@ -112,7 +112,10 @@ async function seedDatabase() {
           name,
           address,
           imageUrl: imageUrl,
-          phones: ["(11) 99999-9999", "(11) 99999-9999"],
+          phones: [
+            `(11) 9${i}${i}${i}${i}-${i}${i}${i}${i}`,
+            `(11) 9${i + 1}${i + 1}${i + 1}${i + 1}-${i + 1}${i + 1}${i + 1}${i + 1}`,
+          ],
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
         },

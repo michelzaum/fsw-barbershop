@@ -55,7 +55,6 @@ export const SidebarSheet = () => {
                     Conecte-se usando sua conta do Google.
                   </DialogDescription>
                 </DialogHeader>
-                {/* Stopped on minute 40 */}
                 <Button
                   variant="outline"
                   className="gap-1 font-bold"
