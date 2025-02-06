@@ -13,7 +13,7 @@ import SignInDialog from "./sign-in-dialog";
 
 export const SidebarSheet = () => {
   const { data } = useSession();
-  const handleLogouClick = () => signOut();
+  const handleLogoutClick = () => signOut();
 
   return (
     <SheetContent className="overflow-y-auto">
@@ -87,7 +87,7 @@ export const SidebarSheet = () => {
           <Button
             variant="ghost"
             className="justify-start gap-2"
-            onClick={handleLogouClick}
+            onClick={handleLogoutClick}
           >
             <LogOutIcon size={18} />
             Sair da conta
