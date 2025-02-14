@@ -10,6 +10,8 @@ import { BookingItem } from "./_components/booking-item";
 import Search from "./_components/search";
 import { Sheet, SheetClose } from "./_components/ui/sheet";
 import { authOptions } from "./_lib/auth";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -44,8 +46,10 @@ export default async function Home() {
     <div>
       <Header />
       <div className="p-5">
-        <h2 className="text-xl font-bold">Olá, Michel!</h2>
-        <p>Sexta-feira, 27 de fevereiro.</p>
+        <h2 className="text-xl font-bold">
+          Olá, {session?.user ? session.user.name : "Bem vindo"}!
+        </h2>
+        <p>{format(new Date(), "EEEE, dd 'de' MMMM ", { locale: ptBR })}</p>
 
         <div className="mt-6">
           <Search />
