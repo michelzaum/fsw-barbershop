@@ -10,9 +10,9 @@ import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet";
 import { SidebarSheet } from "@/app/_components/sidebar-sheet";
 
 interface BarbershopPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 const BarbershopPage = async ({ params }: BarbershopPageProps) => {
