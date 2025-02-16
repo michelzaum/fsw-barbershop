@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { Barbershop, BarbershopService, Booking } from "@prisma/client";
 import { isPast, isToday, set } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -83,6 +84,7 @@ const getTimeList = ({ bookings, selectedDay }: GetTimeListProps) => {
 
 export const ServiceItem = ({ service, barbershop }: ServiceiItemProps) => {
   const { data } = useSession();
+  const router = useRouter();
   const [signDialogIsOpen, setSignDialogIsOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | undefined>(
@@ -152,7 +154,12 @@ export const ServiceItem = ({ service, barbershop }: ServiceiItemProps) => {
         date: selectedDate,
       });
       handleBookingSheetOpenChange();
-      toast.success("Reserva criada com sucesso!");
+      toast.success("Reserva criada com sucesso!", {
+        action: {
+          label: "Ver agendamentos",
+          onClick: () => router.push("/bookings"),
+        },
+      });
     } catch (error) {
       console.error(error);
       toast.error("Erro ao criar reserva");
