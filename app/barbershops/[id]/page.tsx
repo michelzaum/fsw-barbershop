@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
-[];
 import { ServiceItem } from "@/app/_components/service-item";
 import { Phoneitem } from "@/app/_components/phone-item";
 import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet";
