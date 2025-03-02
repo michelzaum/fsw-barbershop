@@ -3,11 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
-import { db } from "@/app/_lib/prisma";
 import { ServiceItem } from "@/app/_components/service-item";
 import { Phoneitem } from "@/app/_components/phone-item";
 import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet";
 import { SidebarSheet } from "@/app/_components/sidebar-sheet";
+import { getBarbershopById } from "@/app/_data/get-barbershop-by-id";
 
 interface BarbershopPageProps {
   params: Promise<{
@@ -17,16 +17,10 @@ interface BarbershopPageProps {
 
 const BarbershopPage = async ({ params }: BarbershopPageProps) => {
   const { id } = await params;
-  const barbershop = await db.barbershop.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      services: true,
-    },
-  });
+  const barbershop = await getBarbershopById(id);
 
   if (!barbershop) {
+    // TODO: Create barbershop not found message feedback
     return notFound();
   }
 
