@@ -1,10 +1,13 @@
 import { BarbershopItem } from "../_components/barbershop-item";
 import { Header } from "../_components/header";
 import Search from "../_components/search";
-import { BarberShopsPageProps, getBarbershops } from "../_data/get-barbershops";
+import {
+  BarberShopsPageProps,
+  getBarbershopsByTitleOrService,
+} from "../_data/get-barbershops-by-title-or-service";
 
 const BarberShopsPage = async ({ searchParams }: BarberShopsPageProps) => {
-  const barbershops = await getBarbershops({ searchParams });
+  const barbershops = await getBarbershopsByTitleOrService({ searchParams });
 
   return (
     <div>
